@@ -1,0 +1,50 @@
+
+#include "CgMyPolyline.h"
+
+
+CgMyPolyline::CgMyPolyline(int id, glm::vec3 start, glm::vec3 end):
+m_type(Cg::Polyline),
+m_id(id)
+{
+
+    vertices.push_back(start);
+    glm::normalize(end);
+    vertices.push_back(start += end);
+    color = glm::vec3(0,0,0);
+    lineWidth =1;
+
+
+}
+
+CgMyPolyline::~CgMyPolyline(){
+    vertices.clear();
+}
+
+const std::vector<glm::vec3>& CgMyPolyline::getVertices()  const{
+    return vertices;
+}
+glm::vec3 CgMyPolyline::getColor()     const{
+    return color;
+}
+unsigned int CgMyPolyline::getLineWidth() const{
+    return lineWidth;
+}
+
+void CgMyPolyline::setColorRed(float value){
+    color.x = value/256;
+}
+
+void CgMyPolyline::setColorGreen(float value){
+    color.y = value/256;
+}
+
+void CgMyPolyline::setColorBlue(float value){
+    color.z = value/256;
+}
+
+
+
+
+
+
+
